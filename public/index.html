@@ -25,45 +25,32 @@
 			margin: 2%;
 		}
 		
-		.row {
-			margin-top: 1%;
-		}
+		.row {margin-top: 1%}
 		
 	</style>
 	
 	<!-- React code -->
 	<script type="text/babel">
-	
+
+		var Button = React.createClass({
+		
+			render: function() {
+				return (
+					<div className={this.props.size}>
+						<button className={this.props.bootstrap}>{this.props.value}</button>
+					</div>
+				)
+			}
+			
+		});
+		
 		var Header = React.createClass({
 			render: function() {
 				return (
 					<div>
 						<h2>React calculator app</h2>
 						<h4>Created by Athanasios Canko</h4>
-					</div>
-				);
-			}
-		});
-		
-		var TextField = React.createClass({
-			render: function() {
-				return (<bdo dir="rtl"><input type="text" className="form-control" placeholder="Blank" limit="10"/></bdo>);
-			}
-		});
-		
-		var AllClearPanel = React.createClass({
-			render: function() {
-				return (
-					<div className="row">
-					
-						<div className="col-xs-6">
-							<button className="btn btn-block btn-info">AC</button>
-						</div>
-						
-						<div className="col-xs-6">
-							<button className="btn btn-block btn-info">C</button>
-						</div>
-				
+						<bdo dir="rtl"><input type="text" className="form-control" placeholder="Blank"/></bdo>
 					</div>
 				);
 			}
@@ -73,71 +60,44 @@
 			render: function() {
 				return (
 				<div>
+				
 					<div className="row">
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">7</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">8</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">9</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-warning">*</button>
-						</div>
+						<Button value="AC" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
+						<Button value="C" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
+					</div>
+				
+					<div className="row">
+						<Button value="7" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="8" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="9" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="*" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">4</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">5</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">6</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-warning">/</button>
-						</div>
+						<Button value="4" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="5" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="6" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="/" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">1</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">2</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">3</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-warning">+</button>
-						</div>
+						<Button value="1" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="2" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="3" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="+" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-danger">0</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-primary">.</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-warning">%</button>
-						</div>
-						<div className="col-xs-3">
-							<button className="btn btn-block btn-warning">-</button>
-						</div>
+						<Button value="0" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button value="." size="col-xs-3" bootstrap="btn btn-block btn-primary"/>
+						<Button value="%" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button value="-" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<div className="col-xs-12">
-							<button className="btn btn-block btn-success">=</button>
-						</div>
+						<Button value="=" size="col-xs-12" bootstrap="btn btn-block btn-success"/>
 					</div>
+					
 				</div>	
 				)
 			}
@@ -146,8 +106,6 @@
 		ReactDOM.render(
 			<div>
 				<Header/>
-				<TextField/>
-				<AllClearPanel/>
 				<Buttons/>
 			</div>
 			, document.getElementById("calculator")
