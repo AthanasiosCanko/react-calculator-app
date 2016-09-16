@@ -1,0 +1,21 @@
+
+		#calculator {
+			background-color: rgb(100, 50, 50);
+			margin: 10%;
+			padding: 3%;
+		}
+		
+		h2, h4 {
+			font-family: HelveticaNeue-Light;
+			color: white;
+			margin: 2%;
+		}
+		
+		p {
+			background-color: white;
+			text-align: right;
+			color: #333;
+			padding: 5px;
+		}
+		
+		.row {margin-top: 1%}

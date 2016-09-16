@@ -8,36 +8,30 @@
 		<script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
+		<link rel="stylesheet" href="main.css"/>
 	</head>
-	
-	<!-- Some CSS to make stuff pretty -->
-	<style>
-	
-		#calculator {
-			background-color: rgb(100, 50, 50);
-			margin: 10%;
-			padding: 3%;
-		}
-		
-		h2, h4 {
-			font-family: HelveticaNeue-Light;
-			color: white;
-			margin: 2%;
-		}
-		
-		.row {margin-top: 1%}
-		
-	</style>
 	
 	<!-- React code -->
 	<script type="text/babel">
+	
+		var arr = [];
 
 		var Button = React.createClass({
-		
+			calculate: function() {
+				if (this.props.action === "deleteAll") arr = [];
+				else if (this.props.action === "deleteLast") {
+					if (arr.length > 1) arr.pop();
+					else arr = [];
+				}
+				else if (this.props.action === "newChar") arr.push(this.props.value);
+	
+				if (arr.length > 0) document.getElementById("Value").innerHTML = arr.join("");
+				else document.getElementById("Value").innerHTML = "Blank";
+			},
 			render: function() {
 				return (
 					<div className={this.props.size}>
-						<button className={this.props.bootstrap}>{this.props.value}</button>
+						<button onClick={this.calculate} className={this.props.bootstrap}>{this.props.value}</button>
 					</div>
 				)
 			}
@@ -50,7 +44,7 @@
 					<div>
 						<h2>React calculator app</h2>
 						<h4>Created by Athanasios Canko</h4>
-						<bdo dir="rtl"><input type="text" className="form-control" placeholder="Blank"/></bdo>
+						<p id="Value">Blank</p>
 					</div>
 				);
 			}
@@ -62,40 +56,40 @@
 				<div>
 				
 					<div className="row">
-						<Button value="AC" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
-						<Button value="C" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
+						<Button action="deleteAll" value="AC" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
+						<Button action="deleteLast" value="C" size="col-xs-6" bootstrap="btn btn-block btn-info"/>
 					</div>
 				
 					<div className="row">
-						<Button value="7" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="8" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="9" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="*" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button action="newChar" value="7" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="8" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="9" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="*" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<Button value="4" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="5" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="6" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="/" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button action="newChar" value="4" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="5" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="6" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="/" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<Button value="1" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="2" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="3" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="+" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button action="newChar" value="1" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="2" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="3" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="+" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<Button value="0" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
-						<Button value="." size="col-xs-3" bootstrap="btn btn-block btn-primary"/>
-						<Button value="%" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
-						<Button value="-" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button action="newChar" value="0" size="col-xs-3" bootstrap="btn btn-block btn-danger"/>
+						<Button action="newChar" value="." size="col-xs-3" bootstrap="btn btn-block btn-primary"/>
+						<Button action="newChar" value="%" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
+						<Button action="newChar" value="-" size="col-xs-3" bootstrap="btn btn-block btn-warning"/>
 					</div>
 					
 					<div className="row">
-						<Button value="=" size="col-xs-12" bootstrap="btn btn-block btn-success"/>
+						<Button action="calculateAll" value="=" size="col-xs-12" bootstrap="btn btn-block btn-success"/>
 					</div>
 					
 				</div>	
